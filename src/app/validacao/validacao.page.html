@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Valide o Cartão Aqui!
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="validacaoForm" >
+
+        <ion-item>
+          <ion-label position="floating">N.° do Cartão</ion-label>
+          <ion-input formControlName="codigo" type="number"></ion-input>
+        </ion-item>
+
+        <ion-button (click)="validar()" type="button" shape="round" expand="full" color="success">
+          Validar
+        </ion-button>
+
+        <ion-text *ngIf="calcular">
+          <ion-label>Dados do cartão</ion-label>
+          <div>
+            <span>Login: {{ usuario }}, Validade: {{ validade | date: "dd/MM/yyyy" }} </span><br/>
+            <span>Status: {{ statusCartao }} </span><br/>
+            <span> {{ empresa }} </span><br/>
+          </div>
+        </ion-text>
+
+        <ion-item *ngIf="calcular">
+          <ion-label position="floating">Valor</ion-label>
+          <ion-input formControlName="valor" type="number"></ion-input>
+        </ion-item>
+        <ion-button *ngIf="calcular" (click)="calcularDesconto()" type="button" shape="round" expand="full" color="primary">
+          Calcular
+        </ion-button>
+        <span *ngIf="calcular">Descntos: {{ desconto }}%, Milhas:  {{ milha }} Pt</span><br/>
+        <span *ngIf="calcular">Valor com Desconto: {{ valorDesconto }} </span>
+
+        <ion-button shape="round" expand="full" color="warning" routerLink="/home">
+          Voltar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cegApp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
